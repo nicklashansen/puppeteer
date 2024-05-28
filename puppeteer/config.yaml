@@ -1,0 +1,87 @@
+defaults:
+    - override hydra/launcher: submitit_local
+
+# environment
+task: tracking              # task name, 'tracking' for low-level policy, and otherwise task name
+num_clips: all              # number of training clips to use, or 'all' for all 836 clips
+clip_ids: ???               # list of clip ids to use; is set automatically based on num_clips
+obs: ???                    # observation type, one of ('state', 'rgb'); is set automatically based on task
+
+# evaluation
+checkpoint: ???             # path to model checkpoint (str)
+eval_episodes: 20           # number of evaluation episodes (int)
+eval_freq: 50000            # evaluation frequency during training (int)
+
+# hierarchy
+low_level_fp: /path/to/ckpt # path to low-level tracking checkpoint (str)
+action_scale: 0.3           # scale of high-level actions (float)
+
+# training
+steps: 10_000_000           # number of training steps (int)
+batch_size: 256             # batch size (int)
+reward_coef: 0.1            # reward loss coefficient (float)
+value_coef: 0.1             # value loss coefficient (float)
+terminated_coef: 0.1        # termination loss coefficient (float)
+consistency_coef: 20        # consistency loss coefficient (float)
+rho: 0.5                    # temporal weight for tdmpc2 loss (float)
+lr: 3e-4                    # learning rate (float)
+enc_lr_scale: 0.3           # encoder learning rate scale (float)
+grad_clip_norm: 20          # gradient clipping norm (float)
+tau: 0.01                   # target network ema coefficient (float)
+discount: 0.97              # discount factor (float)
+buffer_size: 1_000_000      # replay buffer size (int)
+exp_name: default           # experiment identifier/name (str)
+data_dir: /path/to/data     # path to mocapact dataset (str)
+
+# planning
+mpc: true                   # whether to use mpc or policy prior (bool)
+iterations: 6               # number of mpc iterations (int)
+num_samples: 512            # number of samples per iteration (int)
+num_elites: 64              # number of elite samples (int)
+num_pi_trajs: 24            # number of policy prior trajectories (int)
+horizon: 3                  # mpc planning horizon (int)
+min_std: 0.05               # minimum std for mpc sampling (float)
+max_std: 2                  # maximum std for mpc sampling (float)
+temperature: 0.5            # temperature for mpc sampling (float)
+
+# policy prior
+log_std_min: -10            # minimum log std for policy prior (float)
+log_std_max: 2              # maximum log std for policy prior (float)
+entropy_coef: 1e-4          # entropy loss coefficient for policy prior (float)
+
+# critic
+num_bins: 101               # number of bins for discrete regression (int)
+vmin: -10                   # minimum log value for critic (float)
+vmax: +10                   # maximum log value for critic (float)
+
+# architecture
+num_enc_layers: 2           # number of encoder layers (int)
+enc_dim: 256                # encoder hidden dimension (int)
+num_channels: 32            # number of channels for conv encoder (int)
+mlp_dim: 512                # mlp hidden dimension (int)
+latent_dim: 512             # latent state dimension (int)
+num_q: 5                    # number of ensemble Q-functions (int)
+dropout: 0.01               # dropout Q-function rate (float)
+simnorm_dim: 8              # simnorm group dimension (int)
+
+# logging
+wandb_project: ???          # wandb project name (str)
+wandb_entity: ???           # wandb entity name (str)
+wandb_silent: false         # whether to silence wandb prints (bool)
+use_wandb: true             # whether to use wandb (bool)
+save_csv: false             # whether to save csv logs (bool)
+
+# misc
+save_video: true            # whether to save evaluation videos (bool)
+save_agent: true            # whether to save agent checkpoints (bool)
+save_freq: 500_000          # agent checkpoint save frequency (int)
+seed: 1                     # random seed (int)
+
+# convenience
+work_dir: ???
+task_title: ???
+obs_shape: ???
+action_dim: ???
+episode_length: ???
+seed_steps: ???
+bin_size: ???
