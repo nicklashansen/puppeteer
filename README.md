@@ -10,7 +10,7 @@ UC San Diego, NYU, Meta AI<br/>
 
 <img src="assets/0.png" width="100%"></br>
 
-[[Webpage]](https://www.nicklashansen.com/rlpuppeteer) [[Paper]](https://arxiv.org/abs/2310.16828) [[Models]](https://drive.google.com/drive/folders/1cgt9HzquO5mcB71Krv0C0mD10scfMquO?usp=sharing)
+[[Webpage]](https://www.nicklashansen.com/rlpuppeteer) [[Paper]](https://arxiv.org/abs/2405.18418) [[Models]](https://drive.google.com/drive/folders/1cgt9HzquO5mcB71Krv0C0mD10scfMquO?usp=sharing)
 
 ----
 
@@ -95,10 +95,12 @@ We recommend using default hyperparameters for all tasks. See `config.yaml` for 
 If you find our work useful, please consider citing our paper as follows:
 
 ```
-@misc{hansen2024tdmpc2,
+@misc{hansen2024hierarchical,
   title={Hierarchical World Models as Visual Whole-Body Humanoid Controllers}, 
-  author={Nicklas Hansen and Hao Su and Xiaolong Wang},
-  booktitle={arXiv preprint},
+  author={Nicklas Hansen, Jyothir S V, Vlad Sobal, Yann LeCun, Xiaolong Wang, Hao Su},
+  eprint={2405.18418},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG},
   year={2024}
 }
 ```
