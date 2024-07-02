@@ -60,4 +60,5 @@ class HumanoidWrapper(gym.Wrapper):
 		return self.env.unwrapped
 
 	def render(self, mode='rgb_array', width=384, height=384):
-		return self.env.physics.render(height, width, camera_id=3)
+		camera_id = 0 if 'corridor' in self.cfg.task else 3
+		return self.env.physics.render(height, width, camera_id=camera_id)
