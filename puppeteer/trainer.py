@@ -109,7 +109,8 @@ class Trainer():
 			# Collect experience
 			if self._step > self.cfg.seed_steps:
 				action = self.agent.act(obs, t0=len(self._tds)==1)
-			action = self.env.rand_act()
+			else:
+				action = self.env.rand_act()
 			obs, reward, done, info = self.env.step(action)
 			self._tds.append(self.to_td(obs, action, reward, info['terminated']))
 
